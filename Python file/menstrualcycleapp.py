@@ -1,7 +1,7 @@
 from datetime import datetime, timedelta 
 
 
-cycle_length = 0
+cycle_length = 1
 months = 0
 estimate_ovulation = 0
 fertile_days = 0
@@ -50,11 +50,20 @@ while exit:
 	menu_input = input()
 	match menu_input:
 		case '1':
-			print("Enter Last Date Period Started (Year, month, day): ")
+			#global cycle_length
+			print("Enter Last Date Period Started (first_day(year, month, day)): ")
 			start_date = int(input())
-			print("Enter Last Date Period Started (Year, month, day): ")
-			end_date = int(input())
-
+			print("Enter Cycle length (1 - 35):")
+			cycle_length = int(input())
+			next_period_date = int(start_date + timedelta(days=cycle_length))
+			ovulation_day = int(next_period_date - timedelta(days=14))
+			fertile_window_start = ovulation_day - timedelta(days=5)
+			fertile_window_end = ovulation_day + timedelta(days=1)
+			print(next_period_date)
+			print(ovulation_day)
+			print(fertile_window_start)
+			print(fertile_window_end)
+						
 		case '0':
 			exit = False
 
