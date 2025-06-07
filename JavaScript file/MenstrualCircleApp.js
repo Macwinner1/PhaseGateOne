@@ -1,93 +1,192 @@
-
-
-let cycle_length = 0;
-
-function date_validation(date){
-	let [year, month, day] = map(int, date.replace(",", "").split());
-	if (year > 2025 | year < 2025){
-		return "Invalid year";
-		}
-	else if (month > 12 | month < 1){
-		return "Invalid month";
-	}
-	else if (day > 31 | day < 1)
-		return "Invalid day";
-	else{
-		date = datetime(year, month, day);
-	return date;
-	}
-}
-function first_day(date){
-	let start_date = date_validation(date);
-	return start_date;
-	}
-function calculate_cycle_length(start_date){
-	cycle_length = start_date;
-	return cycle_length;
-	}
-
-let menu = `
-===========================================
-	Welcome To Menstrual Cycle Calculator
-	
-	Press:
-	1. Check your Menstrual Cycle
-	0. Exit
-===========================================
-	`;
 const prompt = require('prompt-sync')();
+
+function date_validation(date) {
+    let [year, month, day] = date.replace(",", "").split(" ").map(Number);
+
+    if (year !== 2025) return "Invalid year";
+    if (month < 1 || month > 12) return "Invalid month";
+    if (day < 1 || day > 31) return "Invalid day";
+
+    return new Date(year, month - 1, day); // JavaScript months start at 0
+}
+
+function add_days(date, days) {
+    let new_date = new Date(date);
+    new_date.setDate(new_date.getDate() + days);
+    return new_date;
+}
+
 let exit = true;
-while(exit){
-	let menu_input = prompt(menu);
-	switch (menu_input){
-		case '0':
-			exit = false; break;
-		case '1':{
-			let inner_menu = 
-			`
+while (exit) {
+    let menu = `
 ===========================================
-	Menstrual Cycle Result Menu
-	
-	Press:
-	1. View all the Result
-	2. View Your Next Period Date
-	3. View Your Ovulation Date
-	4. View Your Safe Day
-	5. View Your Fertile Window
-	0. <= Back
-	
+    Welcome To Menstrual Cycle Calculator
+
+    Press:
+    1. Check your Menstrual Cycle
+    0. Exit
 ===========================================
-					`;
-			let exit1 = true;
-			while (exit1){
-				console.log("Enter Last Date Period Started (eg. 2025, 1, 5) : ");
-				start_date = first_day(input());
-				console.log("Enter Cycle length (1 - 35):");
-				calculate_cycle_length(int(input()));
-				let next_period_date = start_date + timedelta(days= cycle_length);
-				let ovulation_day = next_period_date - timedelta(days=14);
-				let fertile_window_start = ovulation_day - timedelta(days=5);
-				let fertile_window_end = ovulation_day + timedelta(days=1);
-				let inner_menu_input = prompt(inner_menu);
-				switch(inner_menu_input){
-					case '0':
-						exit1 = False;
-					case '1':
-						console.log("Your next period date: ", next_period_date);
-						console.log("Your estimated ovulation date:", ovulation_day);
-						console.log("Your fertile window date starts: ", fertile_window_start);
-						console.log("Your fertile window date ends: ", fertile_window_end);
-					case '2':
-						console.log("Your next period date: ", next_period_date);
-					case '3':
-						console.log("Your estimated ovulation date:", ovulation_day);
-					case '4':
-						console.log("Your estimated Safe date:", ovulation_day);
-					case '5':
-						console.log("Your fertile window date starts: ", fertile_window_start);
-						console.log("Your fertile window date ends: ", fertile_window_end);
-				}
-		}
-	}			
+    `;
+	console.log(menu);
+    let menu_input = prompt();
+    switch(menu_input){
+        case "0":
+            exit = false;
+            break;
+        case "1":
+            let start_date = date_validation(prompt("Enter Last Date Period Started (YYYY MM DD): "));
+
+            if (typeof start_date === "string") {
+                console.log(start_date);
+                continue;
+            }
+
+            let cycle_length = Number(prompt("Enter Cycle Length (1-35): "));
+            let bleeding_length = Number(prompt("Enter Bleeding Length (1-7): "));
+            
+            let next_period_date = add_days(start_date, cycle_length);
+            let ovulation_day = add_days(next_period_date, -14);
+            let fertile_window_start = add_days(ovulation_day, -5);
+            let fertile_window_end = add_days(ovulation_day, 1);
+            let first_safe_day_start = add_days(start_date, +(bleeding_length + 1));
+            let first_safe_day_end = add_days(fertile_window_start, -1);
+            let second_safe_day_start = add_days(fertile_window_end, +1);
+            let second_safe_day_end = add_days(next_period_date, -1);
+
+            
+
+            let exit1 = true;
+            while (exit1) {
+                let inner_menu = `
+===========================================
+    Menstrual Cycle Result Menu
+
+    Press:
+    1. View all the Results
+    2. View Your Next Period Date
+    3. View Your Ovulation Date
+    4. View Your Safe Day
+    5. View Your Fertile Window
+    0. <= Back
+===========================================
+                `;
+			console.log(inner_menu);
+                let inner_menu_input = prompt();
+
+                switch (inner_menu_input) {
+                    case "0":
+                        exit1 = false;
+                        break;
+                    case "1":
+                        let exit2 = true;
+                        while (exit2) {
+                            console.log("Your next period date:", next_period_date.toISOString().split("T")[0]);
+                            console.log("Your estimated ovulation date:", ovulation_day.toISOString().split("T")[0]);
+                            console.log("Your fertile window starts:", fertile_window_start.toISOString().split("T")[0]);
+                            console.log("Your fertile window ends:", fertile_window_end.toISOString().split("T")[0]);
+                            console.log(`
+=============
+  Press:
+  0. <= Back
+=============
+                            `);
+                            let back_input = prompt();
+                            if (back_input === "0") exit2 = false;
+                            else  console.log(`
+                            *************
+                            invalid input
+                            *************
+                            `);
+
+                        }
+                        break;
+                    case "2":
+                        let exit3 = true;
+                        while (exit3) {
+                            console.log("Your next period date:", next_period_date.toISOString().split("T")[0]);
+                            console.log(`
+ =============
+  Press:
+  0. <= Back
+ =============
+                            `);
+                            let back_input = prompt();
+                            if (back_input === "0") exit3 = false;
+                            else  console.log(`
+                            *************
+                            invalid input
+                            *************
+                            `);
+
+                        }
+                        break;
+                    case "3":
+                        let exit4 = true;
+                        while (exit4) {
+                            console.log("Your estimated ovulation date:", ovulation_day.toISOString().split("T")[0]);
+                            console.log(`
+ =============
+  Press:
+  0. <= Back
+ =============
+                            `);
+                            let back_input = prompt();
+                            if (back_input === "0") exit4 = false;
+                            else  console.log(`
+                            *************
+                            invalid input
+                            *************
+                            `);
+
+                        }
+                        break;
+                    case "4":
+                        let exit5 = true;
+                        while (exit5) {
+                            console.log(`Your First Estimated Safe Day before fertile window: 
+${first_safe_day_start.toISOString().split("T")[0]} to ${first_safe_day_end.toISOString().split("T")[0]}`);
+                            console.log(`Your Second Estimated Safe Day before fertile window: 
+${second_safe_day_start.toISOString().split("T")[0]} to ${second_safe_day_end.toISOString().split("T")[0]}`);
+
+                            console.log(`
+ =============
+  Press:
+  0. <= Back
+ =============
+                            `);
+                            let back_input = prompt();
+                            if (back_input === "0") exit5 = false;
+                            else console.log(`
+                            *************
+                            invalid input
+                            *************
+                            `);
+                        }
+                        break;
+                    case "5":
+                        let exit6 = true;
+                        while (exit6) {
+                            console.log("Your fertile window starts:", fertile_window_start.toISOString().split("T")[0]);
+                            console.log("Your fertile window ends:", fertile_window_end.toISOString().split("T")[0]);
+                            console.log(`
+ =============
+  Press:
+  0. <= Back
+ =============
+                            `);
+                            let back_input = prompt();
+                            if (back_input === "0") exit6 = false;
+                            else  console.log(`
+                            *************
+                            invalid input
+                            *************
+                            `);
+
+                        }
+                        break;
+                }
+            }
+            break;
+    }
 }
 
