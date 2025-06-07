@@ -82,6 +82,11 @@ while (exit) {
                         while (exit2) {
                             console.log("Your next period date:", next_period_date.toISOString().split("T")[0]);
                             console.log("Your estimated ovulation date:", ovulation_day.toISOString().split("T")[0]);
+                            console.log(`Your First Estimated Safe Day before fertile window: 
+${first_safe_day_start.toISOString().split("T")[0]} to ${first_safe_day_end.toISOString().split("T")[0]}`);
+                            console.log(`Your Second Estimated Safe Day before fertile window: 
+${second_safe_day_start.toISOString().split("T")[0]} to ${second_safe_day_end.toISOString().split("T")[0]}`);
+
                             console.log("Your fertile window starts:", fertile_window_start.toISOString().split("T")[0]);
                             console.log("Your fertile window ends:", fertile_window_end.toISOString().split("T")[0]);
                             console.log(`
