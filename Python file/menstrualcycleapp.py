@@ -30,9 +30,11 @@ def calculate_cycle_length(start_date):
 	cycle_length = start_date
 	return cycle_length
 
-def calculate_bleeding_length(start_date):
+def calculate_bleeding_length(number):
 	global bleeding_length
-	bleeding_length = start_date
+	if number > 7 or number < 1:
+		return "invalid input"
+	bleeding_length = number
 	return bleeding_length
 
 
