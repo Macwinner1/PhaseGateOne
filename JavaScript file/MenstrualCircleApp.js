@@ -1,13 +1,13 @@
 const prompt = require('prompt-sync')();
 
 function date_validation(date) {
-    let [year, month, day] = date.replace(",", "").split(" ").map(Number);
+    let [year, month, day] = date.replace(/[-/,_]/g, " ").split(" ").map(Number);
 
     if (year !== 2025) return "Invalid year";
     if (month < 1 || month > 12) return "Invalid month";
     if (day < 1 || day > 31) return "Invalid day";
 
-    return new Date(year, month - 1, day); // JavaScript months start at 0
+    return new Date(year, month - 1, day); 
 }
 
 function add_days(date, days) {
@@ -41,7 +41,7 @@ while (exit) {
                 continue;
             }
 
-            let cycle_length = Number(prompt("Enter Cycle Length (1-35): "));
+            let cycle_length = Number(prompt("Enter Cycle Length (21-35): "));
             let bleeding_length = Number(prompt("Enter Bleeding Length (1-7): "));
             
             let next_period_date = add_days(start_date, cycle_length);
