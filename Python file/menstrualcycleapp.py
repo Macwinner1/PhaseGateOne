@@ -110,4 +110,6 @@ while exit:
 		case '0':
 			exit = False
 
-
+# handle your validation properly,
+# what happens if i dont enter date in your format
+# your test are not testing functionalities, just validation

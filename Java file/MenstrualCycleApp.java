@@ -29,13 +29,13 @@ public class MenstrualCycleApp {
                     LocalDate dateInput = MenstrualCycleFunction.date_validation(prompt.nextLine());
                     LocalDate start_date = dateInput;
 
-                    System.out.print("Enter Cycle Length (1-35): ");
+                    System.out.print("Enter Cycle Length (21-35): ");
                     int cycle_length = Integer.parseInt(prompt.nextLine());
 
                     System.out.print("Enter Bleeding Length (1-7): ");
                     int bleeding_length = Integer.parseInt(prompt.nextLine());
 
-                    LocalDate next_period_date = start_date.plusDays(cycle_length);
+                    LocalDate next_period_date = MenstrualCycleFunction.add_days(dateInput, cycle_length);
                     LocalDate ovulation_day = next_period_date.minusDays(14);
                     LocalDate fertile_window_start = ovulation_day.minusDays(5);
                     LocalDate fertile_window_end = ovulation_day.plusDays(1);

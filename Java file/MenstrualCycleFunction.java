@@ -4,7 +4,8 @@ import java.time.format.DateTimeFormatter;
 public class MenstrualCycleFunction {
 
     public static LocalDate date_validation(String date) {
-        String[] parts = date.replace(",", "").split(" ");
+    	   date = date.replaceAll("[-/,]", " ");
+        String[] parts = date.split(" ");
         int year = Integer.parseInt(parts[0]);
         int month = Integer.parseInt(parts[1]);
         int day = Integer.parseInt(parts[2]);
