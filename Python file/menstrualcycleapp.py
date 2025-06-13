@@ -26,8 +26,10 @@ def first_day(date):
 	return start_date
 	
 def calculate_cycle_length(start_date):
+	if start_date > 35 or start_date < 21:
+		return "invalid input"
 	global cycle_length
-	cycle_length = start_date
+	cycle_length = start_date	
 	return cycle_length
 
 def calculate_bleeding_length(number):
@@ -37,7 +39,9 @@ def calculate_bleeding_length(number):
 	bleeding_length = number
 	return bleeding_length
 
-
+def calculate_next_day(first_day, calculate_cycle_length):
+	next_period_date = start_date + timedelta(days= cycle_length)
+	return next_period_date
 
 menu = '''
 ===========================================
@@ -78,26 +82,26 @@ while exit:
 				calculate_cycle_length(int(input()))
 				print("Enter bleeding length (1 - 7):")
 				calculate_bleeding_length(int(input()))
-				next_period_date = start_date + timedelta(days= cycle_length)
-				ovulation_day = next_period_date - timedelta(days=14)
+				calculate_next_day(first_day, calculate_cycle_length)
+				ovulation_day = calculate_next_day(first_day, calculate_cycle_length) - timedelta(days=14)
 				fertile_window_start = ovulation_day - timedelta(days=5)
 				fertile_window_end = ovulation_day + timedelta(days=1)
 				first_safe_day_start = start_date + timedelta(days= bleeding_length + 1)
 				first_safe_day_end = fertile_window_start - timedelta(days=1)
 				second_safe_day_start = fertile_window_end + timedelta(days=1)
-				second_safe_day_end = next_period_date - timedelta(days=1)
+				second_safe_day_end = calculate_next_day(first_day, calculate_cycle_length) - timedelta(days=1)
 
 				
 				print(inner_menu)
 				inner_menu_input = input()
 				match inner_menu_input:
 					case '1':
-						print("Your next period date: ", next_period_date)
+						print("Your next period date: ", calculate_next_day(first_day, calculate_cycle_length))
 						print("Your estimated ovulation date:", ovulation_day)
 						print("Your fertile window date starts: ", fertile_window_start)
 						print("Your fertile window date ends: ", fertile_window_end)
 					case '2':
-						print("Your next period date: ", next_period_date)
+						print("Your next period date: ", calculate_next_day(first_day, calculate_cycle_length))
 					case '3':
 						print("Your estimated ovulation date:", ovulation_day)
 					case '4':
