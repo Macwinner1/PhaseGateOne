@@ -17,10 +17,19 @@ class TestMenstrualcycleapp(TestCase):
 	def test_that_calculate_bleeding_length(self):
 		response = menstrualcycleapp.calculate_bleeding_length(8)
 		self.assertEqual(response, "invalid input")
+		
+	def test_that_calculate_bleeding_length_works(self):
+		response = menstrualcycleapp.calculate_bleeding_length(5)
+		self.assertEqual(response, 5)
+
+	def test_that_calculate_cycle_length_works(self):
+		response = menstrualcycleapp.calculate_cycle_length(38)
+		self.assertEqual(response, "invalid input")
+
 
 	def test_that_first_day_function_works(self):
 		response = menstrualcycleapp.first_day("2025, 5, 11")
-		self.assertEqual(response, 2025, 5, 11)
+		self.assertEqual(response, 2025-5-11)
 			
 	def test_that_calculate_cycle_length_works(self):
 		response = menstrualcycleapp.calculate_cycle_length(28)
