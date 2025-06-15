@@ -1,13 +1,25 @@
 const prompt = require('prompt-sync')();
 
 function numberOfStudents() {
-    let number_of_students = parseInt(prompt("How many students do you have? "));
-    return number_of_students;
+    let number_of_students;
+    while (true) {
+        number_of_students = prompt("How many students do you have? ");
+         if (!isNaN(number_of_students) && number_of_students.trim() !== "" && parseInt(number_of_students) > 0) {
+            return parseInt(number_of_students);
+        }
+        console.log("Invalid input! Please enter a valid number.");
+    }
 }
 
 function numberOfSubjects() {
-    let number_of_subjects = parseInt(prompt("How many subjects do they offer? "));
-    return number_of_subjects;
+    let number_of_subjects;
+    while (true) {
+        number_of_subjects = prompt("How many subjects do they offer? ");
+        if (!isNaN(number_of_subjects) && number_of_subjects.trim() !== "" && parseInt(number_of_subjects) > 0) {
+            return parseInt(number_of_subjects);
+        }
+        console.log("Invalid input! Please enter a valid number.");
+    }
 }
 
 function scoreRange(score) {
