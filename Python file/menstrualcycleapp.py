@@ -6,10 +6,12 @@ bleeding_length = 0
 def date_validation(date):
 	date = date.replace(",", " ").replace("-", " ").replace("/", " ").replace("_", " ")
 	date_divid = date.split()
-	try:
-		year, month, day = map(int, date_divid[:3])
-	except (ValueError, IndexError):
+	if len(date_divid) < 3:
 		raise ValueError("Invalid date format")
+	for count in range(3):
+		if not date_divid[count].isdigit():
+			raise ValueError("Invalid date format: Non-numeric values detected")
+	year, month, day = int(date_divid[0]), int(date_divid[1]), int(date_divid[2])
 	if year != 2025:
 		raise ValueError("Invalid year")	
 	elif month > 12 or month < 1:
@@ -98,18 +100,25 @@ while exit:
 					case '1':
 						print("Your next period date: ", calculate_next_day(first_day, calculate_cycle_length))
 						print("Your estimated ovulation date:", ovulation_day)
+						print("Your estimated First Safe date:", first_safe_day_start, "to", first_safe_day_end)
+						print("Your estimated Second Safe date:", second_safe_day_start, "to", second_safe_day_end)
 						print("Your fertile window date starts: ", fertile_window_start)
 						print("Your fertile window date ends: ", fertile_window_end)
+						break
 					case '2':
 						print("Your next period date: ", calculate_next_day(first_day, calculate_cycle_length))
+						break
 					case '3':
 						print("Your estimated ovulation date:", ovulation_day)
+						break
 					case '4':
 						print("Your estimated First Safe date:", first_safe_day_start, "to", first_safe_day_end)
 						print("Your estimated Second Safe date:", second_safe_day_start, "to", second_safe_day_end)
+						break
 					case '5':
 						print("Your fertile window date starts: ", fertile_window_start)
 						print("Your fertile window date ends: ", fertile_window_end)
+						break
 					case '0':
 						exit1 = False
 						

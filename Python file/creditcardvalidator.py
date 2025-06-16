@@ -1,7 +1,7 @@
 from math import floor
-#card_number = [4,3,8,8,5,7,6,0,1,8,4,0,2,6,2,6];
-#card_number = [4,3,8,8,5,7,6,0,1,8,4,1,0,7,0,7];
-#card_number = [5,3,9,9,8,3,1,6,1,9,6,9,0,4,0,3];
+#card_number = 4388576018402626;
+#card_number = 4388576018410707;
+#card_number = 5399831619690403;
 
 def card_number(number):
     card_number_list = [int(digit) for digit in str(number)]
