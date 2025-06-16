@@ -40,27 +40,27 @@ let options = [['E', 'I'],
 			['J', 'P']
 ];
 let optionsCount = 0;
-let optionsList = [];
+let optionsListA = [];
+let optionsListB = [];
+let result = [];
 
 for(let count = 0; count < questions.length; count++){
-if(optionsCount === 4){
-optionsCount = 0;
-}
 console.log(questions[count].join("\t"));
 let wrongInput = true;
 while(wrongInput){
+
 let answer = prompt().toUpperCase();
 switch(answer){
 	case 'A':
 		pickedOption.push(questions[count][0]);
-		optionsList.push(options[count % 4][0]);
+		optionsListA.push(options[count % 4][0]);
 		countA++;
 		optionsCount++;
 		wrongInput = false;
 		break;
 	case 'B':
 		pickedOption.push(questions[count][1]);
-		optionsList.push(options[count % 4][1]);
+		optionsListB.push(options[count % 4][1]);
 		countB++;
 		optionsCount++;
 		wrongInput = false;
@@ -70,9 +70,17 @@ switch(answer){
 		console.log("I know this is an error, Please retry again");
 		console.log(questions[count].join("\t"));
 }
+if ((count + 1) % 5 === 0) {
+        let sectionResult = countA > countB ? options[count % 4][0] : options[count % 4][1];
+        result.push(sectionResult);
+        console.log(`Number of A selected: ${countA}`);
+        console.log(`Number of B selected: ${countB}\n`);
+        countA = 0;
+        countB = 0;
+    }
 }
 }
-console.log("Number of A selected: " + countA);
-console.log("Number of B selected: " + countB);
+
+console.log(name);
 console.log(pickedOption.join(" \n"));
-console.log(optionsList.join(" "));
+console.log(result.join(" "));
