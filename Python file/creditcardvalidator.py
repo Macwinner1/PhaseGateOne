@@ -1,9 +1,11 @@
 from math import floor
 #card_number = [4,3,8,8,5,7,6,0,1,8,4,0,2,6,2,6];
-card_number = [4,3,8,8,5,7,6,0,1,8,4,1,0,7,0,7];
+#card_number = [4,3,8,8,5,7,6,0,1,8,4,1,0,7,0,7];
 #card_number = [5,3,9,9,8,3,1,6,1,9,6,9,0,4,0,3];
 
-
+def card_number(number):
+    card_number_list = [int(digit) for digit in str(number)]
+    return card_number_list
 
 def atm_card_number(card_number): 
 	global even_index_digits
@@ -38,8 +40,8 @@ def atm_card_number(card_number):
 	
 
 
-
-print(atm_card_number(card_number))
+number = input("Enter your card number: ");
+print(atm_card_number(card_number(number)))
 
 
 
