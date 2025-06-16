@@ -29,17 +29,13 @@ def nameList(customersName, cashiersName):
 def ItemList(itemName, pieces, unitPrice):
 	global itemList
 	global purchaseList
-	itemList[0] = itemName
+	itemList[0].append(itemName)
 	itemList[1] = pieces
 	itemList[2] = unitPrice	
 	itemList[3] = total
 	purchaseList.append(itemList)
 
 	return purchaseList
-
-
-
-#def CustomerDetail(name, purchaseList):
 
 
 def calculateSubTotal(pieces , unitPrice):
@@ -99,7 +95,7 @@ calculateBillTotal();
 calculateBalance();
 
 print(names)
-print(purchaseList.join("        "))
+print(purchaseList.join(" "))
 print(subTotal)
 print(billTotal)
 print(discountAmount)
