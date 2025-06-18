@@ -55,21 +55,33 @@ return contactList[count];
 return "Name not found>>";
 }
 
-function editContact(oldValue, newValue){
+
+function editFirstName(oldValue, newValue){
 for(let count = 0; count < contactList.length; count++){
-for(let counter = 0; counter < 3; counter++){
-if(contactList[counter][0] === oldValue){
-contactList.replace(contactList[counter][0], newValue);
-return contactList[counter];
+if(contactList[count][0] === oldValue){
+contactList[count][0] = newValue;
+return contactList[count];
 }
-if(contactList[counter][1] === oldValue){
-contactList.replace(contactList[counter][1], newValue);
-return contactList[counter];
 }
-if(contactList[counter][2] === oldValue){
-contactList.replace(contactList[counter][2], newValue);
-return contactList[counter];
+return "Edit Unsuccessful";
 }
+
+
+function editLastName(oldValue, newValue){
+for(let count = 0; count < contactList.length; count++){
+if(contactList[count][1] === oldValue){
+contactList[count][1] = newValue;
+return contactList[count];
+}
+}
+return "Edit Unsuccessful";
+}
+
+function editPhoneNumber(oldValue, newValue){
+for(let count = 0; count < contactList.length; count++){
+if(contactList[count][2] === oldValue){
+contactList[count][2] = newValue;
+return contactList[count];
 }
 }
 return "Edit Unsuccessful";
@@ -136,40 +148,47 @@ switch(option){
 		let LastNameFind = prompt("Find contact by Last Name: ");
 		console.log(findLastName(LastNameFind));
 		break;
-	/*case '6':*/;
+	case '6':
+		let editMenu = `
+		Enter Existing / New contact you wish to edit.
+			Press:
+			1. Enter first name 
+			2. Enter last name
+			3. Enter phone number
+			0. <- Back
+		`;
+		let back = true;
+		while(back){
+		console.log(editMenu);
+		let editOption = prompt();
+		switch(editOption){
+			case '1':
+				let oldFirstName =  prompt("Enter existing First name you wish to edit: ");
+				console.log(findFirstName(oldFirstName));
+				let newFirstName =  prompt("Enter new First name: ");
+				console.log(editFirstName(oldFirstName, newFirstName));
+				break;
+			case '2':
+				let oldLastName =  prompt("Enter existing Last Name you wish to edit: ");
+				console.log(findLastName(oldLastName));
+				let newLastName =  prompt("Enter new Last Name: ");
+				console.log(editLastName(oldLastName, newLastName));
+				break;
+			case '3':
+				let oldPhoneNumber =  prompt("Enter existing Phone Number you wish to edit: ");
+				console.log(findPhoneNumber(oldPhoneNumber));
+				let newPhoneNumber =  prompt("Enter new Phone Number: ");
+				console.log(editPhoneNumber(oldPhoneNumber, newPhoneNumber));
+				break;		
+			case '0':
+				back = false;
+				break;
+		}
+	} break;
+		
 	case '0':
 		exit = false;
 
-
-
-
-
-
 }
-
-
-
-/*let firstName = prompt("Enter your firstName: ");
-let lastName = prompt("Enter your lastName: ");
-let phoneNumber = prompt("Enter your phone number: ");
-console.log(AddContact(firstName, lastName, CheckPhone(phoneNumber)));
-firstName = prompt("Enter your firstName: ");
-lastName = prompt("Enter your lastName: ");
-phoneNumber = prompt("Enter your phone number: ");
-console.log(AddContact(firstName, lastName, CheckPhone(phoneNumber)));
-let findNumber = prompt("Find phone number: ");
-console.log(FindPhoneNumber(phoneNumber));
-
-
-let findFirstName = prompt("Find first name: ");
-console.log(FindFirstName(findFirstName));
-
-let findLastName = prompt("Find last name: ");
-console.log(FindLastName(findLastName));
-
-
-let deleteNumber = prompt("Delete phone number: ");
-console.log(RemoveContact(deleteNumber));
-console.log(contactList);*/;
 
 }
