@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Scanner;
 public class CreditCardValidation {
 
     public static String AtmCardNumber(String Number) {
@@ -61,7 +62,9 @@ cardTemplate.append("***************************************\n")
     }
     
     public static void main(String[] args) {
-        String cardNumber = "5399831619690403";
+    	Scanner prompt = new Scanner(System.in);
+    	System.out.print("Enter your credit card number: ");
+        String cardNumber = prompt.nextLine();
         System.out.println(CreditCardValidation.AtmCardNumber(cardNumber));
     }
 }
