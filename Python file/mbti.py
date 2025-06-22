@@ -74,6 +74,39 @@ for count in range(len(questions)):
         countA = 0
         countB = 0
         
-print(name)
+print(name + " below is your personality:")
 print("\n".join(pickedOption))
-print(" ".join(result))
+overall_result = ("".join(result))
+
+if overall_result == "INTJ":
+    print("\nYour personality is: INTJ \nINTJ (Architect) is a personality type with the Introverted, Intuitive, Thinking, and Judging traits. \nThese thoughtful tacticians love perfecting the details of life, applying creativity and rationality to everything they do. \nTheir inner world is often a private, complex one." )
+elif overall_result == "INTP":
+    print("\nYour personality is: INTP \nINTP (Logician) is a personality type with the Introverted, Intuitive, Thinking, and Prospecting traits. \nThese flexible thinkers enjoy taking an unconventional approach to many aspects of life. \nThey often seek out unlikely paths, mixing willingness to experiment with personal creativity.")
+elif overall_result == "ENTJ":
+    print("\nYour personality is: ENTJ \nENTJ (Commander) is a personality type with the Extraverted, Intuitive, Thinking, and Judging traits. \nThey are decisive people who love momentum and accomplishment. \nThey gather information to construct their creative visions but rarely hesitate for long before acting on them.")
+elif overall_result == "ENTP":
+    print("\nYour personality is: ENTP \nENTP (Debater) is a personality type with the Extraverted, Intuitive, Thinking, and Prospecting traits. \nThey tend to be bold and creative, deconstructing and rebuilding ideas with great mental agility. \nThey pursue their goals vigorously despite any resistance they might encounter.")
+elif overall_result == "INFJ":
+    print("\nYour personality is: INFJ \nINFJ (Advocate) is a personality type with the Introverted, Intuitive, Feeling, and Judging traits. \nThey tend to approach life with deep thoughtfulness and imagination. \nTheir inner vision, personal values, and a quiet, principled version of humanism guide them in all things.")
+elif overall_result == "INFP":
+    print("\nYour personality is: INFP \nINFP (Mediator) is a personality type with the Introverted, Intuitive, Feeling, and Prospecting traits. \nThese rare personality types tend to be quiet, open-minded, and imaginative, and \nthey apply a caring and creative approach to everything they do.")
+elif overall_result == "ENFJ":
+    print("\nYour personality is: ENFJ \nENFJ (Protagonist) is a personality type with the Extraverted, Intuitive, Feeling, and Judging traits. \nThese warm, forthright types love helping others, and they tend to have strong ideas and values. \nThey back their perspective with the creative energy to achieve their goals.")
+elif overall_result == "ENFP":
+    print("\nYour personality is: ENFP \nENFP (Campaigner) is a personality type with the Extraverted, Intuitive, Feeling, and Prospecting traits. \nThese people tend to embrace big ideas and actions that reflect their sense of hope and goodwill toward others. \nTheir vibrant energy can flow in many directions.")
+elif overall_result == "ISTJ":
+    print("\nYour personality is: ISTJ \nISTJ (Logistician) is a personality type with the Introverted, Observant, Thinking, and Judging traits. \nThese people tend to be reserved yet willful, with a rational outlook on life. \nThey compose their actions carefully and carry them out with methodical purpose.")
+elif overall_result == "ISFJ":
+    print("\nYour personality is: ISFJ \nISFJ (Defender) is a personality type with the Introverted, Observant, Feeling, and Judging traits. \nThese people tend to be warm and unassuming in their own steady way. \nThey’re efficient and responsible, giving careful attention to practical details in their daily lives.")
+elif overall_result == "ESTJ":
+    print("\nYour personality is: ESTJ \nESTJ (Executive) is a personality type with the Extraverted, Observant, Thinking, and Judging traits. \nThey possess great fortitude, emphatically following their own sensible judgment. \nThey often serve as a stabilizing force among others, able to offer solid direction amid adversity.")
+elif overall_result == "ESFJ":
+    print("\nYour personality is: ESFJ \nESFJ (Consul) is a personality type with the Extraverted, Observant, Feeling, and Judging traits. \nThey are attentive and people-focused, and they enjoy taking part in their social community. \nTheir achievements are guided by decisive values, and they willingly offer guidance to others.")
+elif overall_result == "ISTP":
+    print("\nYour personality is: ISTP \nISTP (Virtuoso) is a personality type with the Introverted, Observant, Thinking, and Prospecting traits. \nThey tend to have an individualistic mindset, pursuing goals without needing much external connection.\n They engage in life with inquisitiveness and personal skill, varying their approach as needed.")
+elif overall_result == "ISFP":
+    print("\nYour personality is: ISFP \nISFP (Adventurer) is a personality type with the Introverted, Observant, Feeling, and Prospecting traits. \nThey tend to have open minds, approaching life, new experiences, and people with grounded warmth. \nTheir ability to stay in the moment helps them uncover exciting potentials.")
+elif overall_result == "ESTP":
+    print("\nYour personality is: ESTP \nESTP (Entrepreneur) is a personality type with the Extraverted, Observant, Thinking, and Prospecting traits. \nThey tend to be energetic and action-oriented, deftly navigating whatever is in front of them. \nThey love uncovering life’s opportunities, whether socializing with others or in more personal pursuits.")
+elif overall_result == "ESFP":
+    print("\nYour personality is: ESFP  \nESFP (Entertainer) is a personality type with the Extraverted, Observant, Feeling, and Prospecting traits. \nThese people love vibrant experiences, engaging in life eagerly and taking pleasure in discovering the unknown. \nThey can be very social, often encouraging others into shared activities.")
