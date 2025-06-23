@@ -55,20 +55,21 @@ public static double[][] collectStudentsDetails(int numberOfStudents, int number
                 double score = scoreRange(scanner.nextDouble());
                 studentScores[student][subject] = score;
                 totalScore += score;
-            }
 
-            double averageScore = Math.round((totalScore / numberOfSubjects) * 100.0) / 100.0;
-            studentScores[student][numberOfSubjects] = totalScore;
-            studentScores[student][numberOfSubjects + 1] = averageScore;
-        }
+            }
+                studentScores[student][numberOfSubjects] = totalScore;
+                double averageScore = Math.round((totalScore / numberOfSubjects) * 100.0) / 100.0;
+                studentScores[student][numberOfSubjects + 1] = averageScore;
+
+                    }
 
         return studentScores;
 }
 
 public static void calculatePositions(double[][] studentScores) {
         int numberOfStudents = studentScores.length;
-        int numberOfSubjects = studentScores[0].length - 3; 
-
+        int numberOfSubjects = studentScores[0].length - 3;
+           
         for (int count = 0; count < numberOfStudents - 1; count++) {
             for (int counter = count + 1; counter < numberOfStudents; counter++) {
                 if (studentScores[count][numberOfSubjects] < studentScores[counter][numberOfSubjects]) {
